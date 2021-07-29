@@ -1,0 +1,35 @@
+	<section>				
+		<article>
+			<header>
+				<h2>{{titulo}}</h2>
+			</header>
+			<p>{{conteudo}}</p>
+
+			<br>
+			<hr>
+			<br>
+			<!-- Modificar no site online!! -->
+			<form method="post" action="http://localhost/projetorecicladarte/index.php?pagina=post&metodo=addComent">
+				<span>Nome:</span><br>
+				<input type="text" name="nome" /><br><br>
+
+				<span>Mensagem:</span><br>
+				<textarea name="msg"></textarea><br><br>
+
+				<input type="hidden" name="id" value="{{id}}" />
+
+				<input type="submit" name="Enviar" />
+			</form>
+			<br><br>
+
+			<!-- Isso aqui é o twig misturado com html -->
+			{% if comentarios == false %}
+				<p>Nenhum comentário encontrado para esta postagem!</p>
+			{% else %}
+				{% for coment in comentarios %}
+					<h3>{{coment.nome}}</h3>
+					<p>{{coment.mensagem}}</p>
+				{% endfor %}
+			{% endif %}
+		</article>		
+	</section>			
